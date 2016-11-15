@@ -2,19 +2,25 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>iMax Kenya</title>
+
 <title>Imax|Cinema</title>
+
 <meta name="author" content="ImayaDismas">
 <meta name="description" content="description here">
 <meta name="keywords" content="keywords,here">
 <!--Lnks to all style sheets are here. I am linking to my folders -->
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway" type='text/css'>
     <!--Ionic icons-->
+    <link rel="shortcut icon" href="img/I.png" type="image/png">
     <link href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
                 <link rel="stylesheet" href="css/foundation.css" type="text/css" />
                 <link rel="stylesheet" href="css/app.css" type="text/css" />
+                <link rel="stylesheet" href="css/compiled.css">
                 <script src="js/modernizr.js"></script>
+                <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
                 <!-- Modernizr -->
                 <!--    Google Annalytics  starts here.Copy paste your GA code and place it here -->
                 <script>
@@ -30,23 +36,70 @@
                 <!--    Google Annalytics Ends here !!! -->
             </head>
             <body>
-               
-                <!--
+                
+<!--                Off canvas toggle-->
 
-        Here is where you place all your divs and content.
+<input type="checkbox" id="sidebartoggler">
 
+  <div class="page-wrapper">
 
-    -->
+    <label class="toggle" for="sidebartoggler"><span>☰</span></label>
+      
+      
+      
+
+    <div class="page-content">
+<!--                end off canvas toggle-->
+                
+                
+                
+<!--landing page-->
+                
+
+            
+            <ul class="cb-slideshow">
+                <li><span>Image 01</span><div><a href="movie13.html" class="button">Preview</a></div></li>
+                <li><span>Image 02</span><div><a href="movie3.html" class="button">Preview</a></div></li>
+                <li><span>Image 03</span><div><a href="movie4.html" class="button">Preview</a></div></li>
+                <li><span>Image 04</span><div><a href="movie2.html" class="button">Preview</a></div></li>
+                <li><span>Image 05</span><div><a href="movie5.html" class="button">Preview</a></div></li>
+                <li><span>Image 06</span><div><a href="movie1.html" class="button">Preview</a></div></li>
+            </ul>      
+                
+                
+<!--                end of landing page-->
+</div>
+<!--      end of page content-->
+
+    <div class="sidebar">
+      <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>Offers</li>
+          <li>Book ticket</li>
+      </ul>
+    </div>
+  </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 <!--   After all html content Your scripts -->
                 <!--Linked to your local project scripts that are located within the project: js-->
                 <script src="js/script.js" type="text/javascript"></script>
                 <!--  Scripts hosted on CDN  -->
-                <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-                <script src="//ajax.googleapis.com/ajax/libs/dojo/1.7.3/dojo/dojo.js" type="text/javascript"></script>
-                <script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js" type="text/javascript"></script>
-                <script src="//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js" type="text/javascript"></script>
-                <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js" type="text/javascript"></script>
+               <!--  // <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+                // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+                // <script src="//ajax.googleapis.com/ajax/libs/dojo/1.7.3/dojo/dojo.js" type="text/javascript"></script>
+                // <script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js" type="text/javascript"></script>
+                // <script src="//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js" type="text/javascript"></script>
+                // <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js" type="text/javascript"></script> -->
                 <!-- Your custom javascript code goes here -->
                 <script src="js/vendor/jquery.min.js"></script>
                 <script src="js/vendor/what-input.min.js"></script>
@@ -61,5 +114,40 @@
        else if (window.attachEvent) window.attachEvent("onload", autorun);
        else window.onload = autorun;
      </script>
+    <script type="text/javascript">
+    $(document).ready(function slide() {
+ var div = $('.cb-slideshow');
+ var images = div.find('li');
+ var timeOut = 5000;
+ var easing = 'linear';
+ var totalLength = images.length;
+ console.log("Length", images);
+
+ $(images).each(function(index, image) {
+  var button = $(image).find('div');
+  var bg = $(image).find('span');
+  $(bg).css({
+   'opacity': 0
+  });
+  setTimeout(function() {
+   $(button).css({
+    'z-index': 1000,
+    'opacity': 1,
+   });
+   $(bg).animate({
+    'opacity': 1,
+   }, timeOut, function() {
+    $(bg).delay((timeOut / 4)).animate({
+     'opacity': 0,
+    }, function(){
+        if (index == totalLength - 1) {
+            slide();
+        }
+    });    
+   }); 
+  }, (timeOut * index));
+ });
+});
+    </script>
             </body>
         </html>
